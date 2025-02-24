@@ -1,0 +1,379 @@
+
+WITH top_paying_jobs AS (
+SELECT
+    job_id,
+    job_title,
+    job_location,
+    salary_year_avg,
+    name AS company_name
+FROM job_postings_fact
+LEFT JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
+WHERE (job_title_short = 'Data Analyst' OR job_title_short = 'Business Analyst') 
+AND (job_location LIKE '%Netherlands%'
+   OR job_location LIKE '%,NL')
+   AND salary_year_avg IS NOT NULL
+ORDER BY salary_year_avg DESC
+LIMIT 10)
+SELECT top_paying_jobs.*,
+    skills
+     FROM top_paying_jobs
+INNER JOIN skills_job_dim ON top_paying_jobs.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+    ORDER BY salary_year_avg DESC
+    /* Final Takeaways:
+Mastering SQL and Python is crucial for top data/business analyst roles.
+Business-oriented tools like SAP and Excel remain relevant, especially in enterprise environments.
+R is useful for statistical work, but Python dominates in broader applications. 
+{
+    "job_id": 24675,
+    "job_title": "Staff Research Engineer",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "177283.0",
+    "company_name": "ServiceNow",
+    "skills": "nosql"
+  },
+  {
+    "job_id": 24675,
+    "job_title": "Staff Research Engineer",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "177283.0",
+    "company_name": "ServiceNow",
+    "skills": "azure"
+  },
+  {
+    "job_id": 24675,
+    "job_title": "Staff Research Engineer",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "177283.0",
+    "company_name": "ServiceNow",
+    "skills": "aws"
+  },
+  {
+    "job_id": 24675,
+    "job_title": "Staff Research Engineer",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "177283.0",
+    "company_name": "ServiceNow",
+    "skills": "spark"
+  },
+  {
+    "job_id": 24675,
+    "job_title": "Staff Research Engineer",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "177283.0",
+    "company_name": "ServiceNow",
+    "skills": "hadoop"
+  },
+  {
+    "job_id": 1719883,
+    "job_title": "Data Architect - Sustainability",
+    "job_location": "Netherlands",
+    "salary_year_avg": "155000.0",
+    "company_name": "LyondellBasell",
+    "skills": "sap"
+  },
+  {
+    "job_id": 1051496,
+    "job_title": "Analytics Engineer (L5) - Promotional Media - EMEA",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "147500.0",
+    "company_name": "Netflix",
+    "skills": "sql"
+  },
+  {
+    "job_id": 1051496,
+    "job_title": "Analytics Engineer (L5) - Promotional Media - EMEA",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "147500.0",
+    "company_name": "Netflix",
+    "skills": "python"
+  },
+  {
+    "job_id": 1051496,
+    "job_title": "Analytics Engineer (L5) - Promotional Media - EMEA",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "147500.0",
+    "company_name": "Netflix",
+    "skills": "scala"
+  },
+  {
+    "job_id": 1051496,
+    "job_title": "Analytics Engineer (L5) - Promotional Media - EMEA",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "147500.0",
+    "company_name": "Netflix",
+    "skills": "r"
+  },
+  {
+    "job_id": 1051496,
+    "job_title": "Analytics Engineer (L5) - Promotional Media - EMEA",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "147500.0",
+    "company_name": "Netflix",
+    "skills": "go"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "sql"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "python"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "r"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "vba"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "pyspark"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "airflow"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "hadoop"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "excel"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "tableau"
+  },
+  {
+    "job_id": 348471,
+    "job_title": "Data Analyst, Reporting",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111202.0",
+    "company_name": "Adyen",
+    "skills": "looker"
+  },
+  {
+    "job_id": 751459,
+    "job_title": "Data Analyst",
+    "job_location": "Maassluis, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Lely",
+    "skills": "sql"
+  },
+  {
+    "job_id": 751459,
+    "job_title": "Data Analyst",
+    "job_location": "Maassluis, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Lely",
+    "skills": "pyspark"
+  },
+  {
+    "job_id": 751459,
+    "job_title": "Data Analyst",
+    "job_location": "Maassluis, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Lely",
+    "skills": "tableau"
+  },
+  {
+    "job_id": 138295,
+    "job_title": "Data Analyst, Developer Relations",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Adyen",
+    "skills": "sql"
+  },
+  {
+    "job_id": 138295,
+    "job_title": "Data Analyst, Developer Relations",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Adyen",
+    "skills": "python"
+  },
+  {
+    "job_id": 138295,
+    "job_title": "Data Analyst, Developer Relations",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Adyen",
+    "skills": "r"
+  },
+  {
+    "job_id": 138295,
+    "job_title": "Data Analyst, Developer Relations",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Adyen",
+    "skills": "go"
+  },
+  {
+    "job_id": 138295,
+    "job_title": "Data Analyst, Developer Relations",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Adyen",
+    "skills": "matlab"
+  },
+  {
+    "job_id": 138295,
+    "job_title": "Data Analyst, Developer Relations",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Adyen",
+    "skills": "looker"
+  },
+  {
+    "job_id": 1112483,
+    "job_title": "Material Master Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Lucid Motors",
+    "skills": "excel"
+  },
+  {
+    "job_id": 1112483,
+    "job_title": "Material Master Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Lucid Motors",
+    "skills": "word"
+  },
+  {
+    "job_id": 1112483,
+    "job_title": "Material Master Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Lucid Motors",
+    "skills": "sap"
+  },
+  {
+    "job_id": 1112483,
+    "job_title": "Material Master Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "111175.0",
+    "company_name": "Lucid Motors",
+    "skills": "outlook"
+  },
+  {
+    "job_id": 1324347,
+    "job_title": "Director of Business Intelligence",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105300.0",
+    "company_name": "FareHarbor",
+    "skills": "sql"
+  },
+  {
+    "job_id": 1324347,
+    "job_title": "Director of Business Intelligence",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105300.0",
+    "company_name": "FareHarbor",
+    "skills": "python"
+  },
+  {
+    "job_id": 1324347,
+    "job_title": "Director of Business Intelligence",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105300.0",
+    "company_name": "FareHarbor",
+    "skills": "express"
+  },
+  {
+    "job_id": 1324347,
+    "job_title": "Director of Business Intelligence",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105300.0",
+    "company_name": "FareHarbor",
+    "skills": "tableau"
+  },
+  {
+    "job_id": 1324347,
+    "job_title": "Director of Business Intelligence",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105300.0",
+    "company_name": "FareHarbor",
+    "skills": "power bi"
+  },
+  {
+    "job_id": 312839,
+    "job_title": "Service Parts Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105000.0",
+    "company_name": "Lucid Motors",
+    "skills": "excel"
+  },
+  {
+    "job_id": 312839,
+    "job_title": "Service Parts Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105000.0",
+    "company_name": "Lucid Motors",
+    "skills": "sap"
+  },
+  {
+    "job_id": 312839,
+    "job_title": "Service Parts Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105000.0",
+    "company_name": "Lucid Motors",
+    "skills": "powerpoint"
+  },
+  {
+    "job_id": 312839,
+    "job_title": "Service Parts Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105000.0",
+    "company_name": "Lucid Motors",
+    "skills": "outlook"
+  },
+  {
+    "job_id": 312839,
+    "job_title": "Service Parts Data Analyst",
+    "job_location": "Amsterdam, Netherlands",
+    "salary_year_avg": "105000.0",
+    "company_name": "Lucid Motors",
+    "skills": "ms access"
+  }*/
+  
