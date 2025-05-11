@@ -248,7 +248,7 @@ From the analysis, several key findings emerged:
 - Cloud-based data analytics is emerging? -> Learning **cloud platforms (Azure) and ERP systems (SAP)** can provide a **competitive career advantage**.
 
 ### 📈 **Optimal Skills for Maximizing Market Value**  
-- **SQL leads both in demand and salary potential**, making it one of the best skills to learn for **career growth and job market competitiveness**.(trust me bro)  
+- **SQL leads both in demand and salary potential**, making it one of the best skills to learn for **career growth and job market competitiveness**. 
 
 ---
 
@@ -258,4 +258,4 @@ This project **enhanced my SQL skills** and provided valuable insights into the 
 - The findings act as my personal **guide for skill development and job search strategies**.  
 - **Aspiring data analysts** can gain a **competitive edge** by focusing on **high-demand, high-salary skills**.  
 - This exploration underscores the importance of **continuous learning** and staying ahead of **emerging trends** in any occupation.
-- **So proud of myself**
+- Thank you for reading.
